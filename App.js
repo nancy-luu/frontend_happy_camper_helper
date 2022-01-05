@@ -56,6 +56,7 @@ export default function App() {
     setSeasonsSelected(4)
   }
 
+  console.log("TESTING")
 
   return (
     <div className="App">
