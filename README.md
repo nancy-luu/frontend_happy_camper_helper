@@ -1,72 +1,18 @@
-# Getting Started with Create React App
+# Happy Camper Helper App
 
+# Project Pitch
+Set off on the trails to your campsite knowing that you have the right gear with you. Our Happy Camper Helper App will show you the gear you will need for the specific season you’ll be camping in. Click on a season, browse the items you will need, then click on the item to get it added to your list. Unable to find the item? You can add the particular item you will need via our form for that specific season. Lower your stress of trying to figure out what you need and have the app guide you on your way.
 
+# Framework/Mockup Backend
+![table relation](https://user-images.githubusercontent.com/89321676/148140992-a3113ce4-73de-4826-9e80-0cc70e6cf8f1.png)
+# Framework/Mockup Frontend
+![Screen Shot 2022-01-03 at 10 04 53 AM](https://user-images.githubusercontent.com/89321676/148141022-fc988dba-9053-41b6-98e4-7b6ebfdb2886.png)
+![Screen Shot 2022-01-03 at 10 05 05 AM](https://user-images.githubusercontent.com/89321676/148141025-555dda59-bcdd-4d7e-bd9a-f2d3ceefd7d3.png)
+![Screen Shot 2022-01-03 at 10 05 17 AM](https://user-images.githubusercontent.com/89321676/148141029-454c6c94-e972-46d7-a208-fe49290f6977.png)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# User Stories
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- As a user, I can view suggested packing lists for different camping seasons.
+- Once I see a season’s list, I can add an item I need to buy into ‘My Cart’.
+- I can view saved items in ‘My Cart’ as a gallery.
+- If there is an item I need that is not included in the suggested packing list, I can also create a new custom item that will be added/visible in ‘My Cart’.
