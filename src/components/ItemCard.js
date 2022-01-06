@@ -1,7 +1,7 @@
 import React from "react";
 import { Container, Row, Col } from "react-bootstrap";
 
-export default function ItemCard({ item, handleAddItem }) {
+export default function ItemCard({ item, handleAddItem, handleBuyItem }) {
     return (
       <Container>
             <div className="itemCard" style={{width: "15rem", height: "27rem"}}>
@@ -19,7 +19,8 @@ export default function ItemCard({ item, handleAddItem }) {
                     </div>
                 </div>
                 <div className="addItem">
-                    <button type="button" class="btn btn-success" onClick={() => handleAddItem(item)}>ADD</button>
+                    <button type="button" className="btn btn-success" onClick={() => handleAddItem(item)}>{item.added === false ? "ADD" : "ADDED" }</button>
+                    <a type="button" className="btn btn-success" href={item.shopping_url} target="_blank">BUY</a>
                 </div>
             </div>
       </Container>

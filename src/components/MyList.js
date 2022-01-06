@@ -7,9 +7,6 @@ export default function MyList ( {items, setMyItems, myListItems } ){
 
     return (
         <div >
-            {myListItems.map((item) => 
-                <ItemCard key={item.id} item={item} />
-            )}
         </div>
     )  
 }

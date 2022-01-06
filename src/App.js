@@ -4,13 +4,16 @@ import { Row, Col } from 'react-bootstrap';
 import Header from './components/Header';
 import NavBar from './components/NavBar'
 import ItemCollection from './components/ItemCollection';
-import MyList from './components/MyList'
+import Trails from './components/Trails'
+import MyList from './components/MyList';
+import NewItem from './components/NewItem'
 
 export default function App() {
   const [items, setItems] = useState([]);
-  const [seasonsSelected, setSeasonsSelected] = useState([])
-  const [addedItems, setAddedItems] = useState([])
-  const [myItems, setMyItems] = useState([])
+  const [trails, setTrails] = useState([]);
+  const [seasonsSelected, setSeasonsSelected] = useState([]);
+  const [addedItems, setAddedItems] = useState([]);
+  const [myItems, setMyItems] = useState([]);
 
 
   // useEffect fetch specific for a season needs to be pulled down here
@@ -21,11 +24,28 @@ export default function App() {
       .then((resp) => resp.json())
       .then((items) => setItems(items));
   }, []);
-  // console.log(items)
 
-  function handleMyList(){
+  useEffect(() => {
+    fetch("http://localhost:9292/trails")
+      .then((resp) => resp.json())
+      .then((trails) => setTrails(trails));
+  }, []);
+
+
+  function handleHome(){
+    setSeasonsSelected([])
+  }
+
+  function handleMyList(item){
     setSeasonsSelected([])
     setAddedItems(itemsTrue())
+    return (<p>HI</p>)
+  }
+
+  function handleNewItem(){
+    setSeasonsSelected([])
+    setAddedItems(itemsTrue())
+
   }
 
   function itemsTrue(){
@@ -36,8 +56,8 @@ export default function App() {
     setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
   }
 
-  function handleHome({}){
-    setSeasonsSelected()
+  function handleBuyItem(item){
+    setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
   }
 
   function handleFall({}){
@@ -56,21 +76,27 @@ export default function App() {
     setSeasonsSelected(4)
   }
 
-
   return (
     <div className="App">
-      <Header className="header" />
+      <Header className="header" handleHome={handleHome}/>
       <NavBar 
         className="navBar" 
-        handleHome={handleHome}
         handleMyList={handleMyList}
+        handleNewItem={handleNewItem}
         handleFall={handleFall} 
         handleWinter={handleWinter}
         handleSpring={handleSpring}
         handleSummer={handleSummer}
       />
-      <ItemCollection items={items} seasonSelected={seasonsSelected} handleAddItem={handleAddItem}/>
-      <MyList items={items} setMyItems={setMyItems} myListItems={itemsTrue()}/>
+      <Row>
+        <NewItem />
+      </Row>
+      <Row>
+        <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>
+      </Row>
+      <Row>
+        <ItemCollection items={items} seasonSelected={seasonsSelected} handleAddItem={handleAddItem} handleBuyItem={handleBuyItem}/>
+      </Row>
     </div>
   );
 }

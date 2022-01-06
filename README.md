@@ -16,6 +16,3 @@ Set off on the trails to your campsite knowing that you have the right gear with
 - Once I see a season’s list, I can add an item I need to buy into ‘My Cart’.
 - I can view saved items in ‘My Cart’ as a gallery.
 - If there is an item I need that is not included in the suggested packing list, I can also create a new custom item that will be added/visible in ‘My Cart’.
-
-
-** git pull test **
