@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import { Row, Col } from 'react-bootstrap';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Header from './components/Header';
 import NavBar from './components/NavBar'
+import Home from './components/Home'
 import ItemCollection from './components/ItemCollection';
 import Trails from './components/Trails'
 import MyList from './components/MyList';
@@ -16,6 +18,7 @@ export default function App() {
   const [myItems, setMyItems] = useState([]);
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [error, setError] = useState({})
+  const [newItems, setNewItems] = useState([]);
 
 
   // useEffect fetch specific for a season needs to be pulled down here
@@ -47,8 +50,6 @@ export default function App() {
   }
 
   function handleNewItem(){
-    setSeasonsSelected([])
-
   }
 
   function handleAddItem(item){
@@ -71,51 +72,87 @@ export default function App() {
   }
 
   function handleFall({}){
-    setAddedItems([])
     setSeasonsSelected(1)
   }
 
   function handleWinter({}){
-    setAddedItems([])
     setSeasonsSelected(2)
   }
 
   function handleSpring({}){
-    setAddedItems([])
     setSeasonsSelected(3)
   }
 
   function handleSummer({}){
-    setAddedItems([])
     setSeasonsSelected(4)
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    // fetch("http://localhost:9292/items", {
+    //   method: 'POST',
+    //   headers:  {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   },
+    //   body: JSON.stringify({
+    //     name: name,
+    //     description: description,
+    //     shopping_url: shopping_url,
+    //     image_url: image_url,
+    //   }),
+    // })
+    // .then((resp) => resp.json())
+    // .then((newItems) => setNewItems(newItems))
+    console.log("SUBMIT!")
+  }
+
+
 
   return (
-    <div className="App">
-      <Header className="header" handleHome={handleHome}/>
-      <NavBar 
-        className="navBar" 
-        handleMyList={handleMyList}
-        handleNewItem={handleNewItem}
-        handleFall={handleFall} 
-        handleWinter={handleWinter}
-        handleSpring={handleSpring}
-        handleSummer={handleSummer}
-      />
-      <Row>
-        <MyList addedItems={addedItems} handleAddItem={handleAddItem} handleBuyItem={handleBuyItem}/>
-      </Row>
-      <Row>
-        <NewItem />
-      </Row>
-      <Row>
-        <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>
-      </Row>
-      <Row>
-        <ItemCollection items={items} seasonSelected={seasonsSelected} handleAddItem={handleAddItem} handleBuyItem={handleBuyItem}/>
-      </Row>
-    </div>
+    <Router>
+      <div className="App">
+        <NavBar 
+          className="navBar" 
+          handleMyList={handleMyList}
+          handleNewItem={handleNewItem}
+          handleFall={handleFall} 
+          handleWinter={handleWinter}
+          handleSpring={handleSpring}
+          handleSummer={handleSummer}
+        />
+        <div className="content">
+          <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
+            <Route exact path="/myList">
+              <MyList 
+                addedItems={addedItems} 
+                handleAddItem={handleAddItem} 
+                handleBuyItem={handleBuyItem}
+              />
+            </Route>
+            <Route exact path="/newItem">
+              <NewItem handleSubmit={handleSubmit}/>
+            </Route>
+            <Route exact path="/collection">
+              <Row className="trailRow">
+                <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>
+              </Row>
+              <Row>
+              <ItemCollection 
+                items={items} 
+                seasonSelected={seasonsSelected} 
+                handleAddItem={handleAddItem} 
+                handleBuyItem={handleBuyItem}
+              />
+              </Row>
+            </Route>
+          </Switch>
+        </div>
+      </div>
+    </Router>
   );
 }
 
