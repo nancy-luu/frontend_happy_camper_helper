@@ -14,6 +14,8 @@ export default function App() {
   const [seasonsSelected, setSeasonsSelected] = useState([]);
   const [addedItems, setAddedItems] = useState([]);
   const [myItems, setMyItems] = useState([]);
+  const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [error, setError] = useState({})
 
 
   // useEffect fetch specific for a season needs to be pulled down here
@@ -31,50 +33,63 @@ export default function App() {
       .then((trails) => setTrails(trails));
   }, []);
 
+  useEffect(() => {
+    fetch("http://localhost:9292/my_list")
+      .then((resp) => resp.json())
+      .then((addedItems) => setAddedItems(addedItems));
+  }, [updateSuccess]);
+
 
   function handleHome(){
-    setSeasonsSelected([])
   }
 
   function handleMyList(item){
-    setSeasonsSelected([])
-    setAddedItems(itemsTrue())
-    return (<p>HI</p>)
   }
 
   function handleNewItem(){
     setSeasonsSelected([])
-    setAddedItems(itemsTrue())
 
-  }
-
-  function itemsTrue(){
-    return items.filter((i) => i.added)
   }
 
   function handleAddItem(item){
-    setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
+    let data = {id: item.id}
+
+    fetch("http://localhost:9292/my_list", {
+      method: 'PATCH',
+      headers:  {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(data)
+    }).then((resp) => resp.json())
+    .then((updateSuccess) => setUpdateSuccess(true))
+    .catch((error) => setError(error))
   }
 
   function handleBuyItem(item){
-    setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
+    // setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
   }
 
   function handleFall({}){
+    setAddedItems([])
     setSeasonsSelected(1)
   }
 
   function handleWinter({}){
+    setAddedItems([])
     setSeasonsSelected(2)
   }
 
   function handleSpring({}){
+    setAddedItems([])
     setSeasonsSelected(3)
   }
 
   function handleSummer({}){
+    setAddedItems([])
     setSeasonsSelected(4)
   }
+
 
   return (
     <div className="App">
@@ -88,6 +103,9 @@ export default function App() {
         handleSpring={handleSpring}
         handleSummer={handleSummer}
       />
+      <Row>
+        <MyList addedItems={addedItems} handleAddItem={handleAddItem} handleBuyItem={handleBuyItem}/>
+      </Row>
       <Row>
         <NewItem />
       </Row>
