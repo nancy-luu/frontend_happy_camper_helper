@@ -5,10 +5,9 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Header from './components/Header';
 import NavBar from './components/NavBar'
 import Home from './components/Home'
-import ItemCollection from './components/ItemCollection';
-import Trails from './components/Trails'
 import MyList from './components/MyList';
 import NewItem from './components/NewItem'
+import Season from './components/Season'
 
 export default function App() {
   const [items, setItems] = useState([]);
@@ -87,24 +86,19 @@ export default function App() {
     setSeasonsSelected(4)
   }
 
-  function handleSubmit(e) {
-    e.preventDefault();
-    // fetch("http://localhost:9292/items", {
-    //   method: 'POST',
-    //   headers:  {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   },
-    //   body: JSON.stringify({
-    //     name: name,
-    //     description: description,
-    //     shopping_url: shopping_url,
-    //     image_url: image_url,
-    //   }),
-    // })
-    // .then((resp) => resp.json())
-    // .then((newItems) => setNewItems(newItems))
-    console.log("SUBMIT!")
+  function postNewItem(item) {
+    fetch("http://localhost:9292/items", {
+      method: 'POST',
+      headers:  {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(item),
+    })
+    .then(res => res.json())
+    .then(newItem => {
+      setNewItems([newItem,...items])
+    })
+    // console.log("SUBMIT!")
   }
 
 
@@ -127,27 +121,29 @@ export default function App() {
               <Home />
             </Route>
             <Route exact path="/myList">
-              <MyList 
-                addedItems={addedItems} 
-                handleAddItem={handleAddItem} 
-                handleBuyItem={handleBuyItem}
-              />
-            </Route>
-            <Route exact path="/newItem">
-              <NewItem handleSubmit={handleSubmit}/>
-            </Route>
-            <Route exact path="/collection">
-              <Row className="trailRow">
-                <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>
+              <Row>
+                <MyList 
+                  addedItems={addedItems} 
+                  handleAddItem={handleAddItem} 
+                  handleBuyItem={handleBuyItem}
+                />
               </Row>
               <Row>
-              <ItemCollection 
+                <NewItem postNewItem={postNewItem}/>
+              </Row>
+            </Route>
+            <Route exact path="/items">
+              <Season 
+                handleFall={handleFall} 
+                handleWinter={handleWinter} 
+                handleSpring={handleSpring} 
+                handleSummer={handleSummer} 
                 items={items} 
-                seasonSelected={seasonsSelected} 
+                seasonsSelected={seasonsSelected} 
+                trails={trails}
                 handleAddItem={handleAddItem} 
                 handleBuyItem={handleBuyItem}
-              />
-              </Row>
+              />  
             </Route>
           </Switch>
         </div>

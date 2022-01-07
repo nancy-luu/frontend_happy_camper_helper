@@ -24,8 +24,11 @@ export default function Trails ({ items, seasonSelected, trails}){
     console.log(uniqueFilteredTrail)
 
     return (
-        <div className="trailContainer">
-            {<TrailForm key={items.id} item={items} trails={uniqueFilteredTrail}/>}
-        </div>
+        <>
+            <h2>Suggested Trails: </h2>
+            <div className="trailContainer">
+                {<TrailForm key={items.id} item={items} trails={uniqueFilteredTrail}/>}
+            </div>
+        </>
     )  
 }   
