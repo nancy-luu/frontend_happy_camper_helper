@@ -2,15 +2,8 @@ import React from "react";
 import TrailForm from "./TrailForm"
 
 
-
-// useEffect fetch specific for a season needs to be pulled down here
-// {props.season_name}
-
-
 export default function Trails ({ items, seasonSelected, trails}){
 
-    // console.log(trails)
-    // let itemTrailId = item.trail_id
     
     let filteredItems = items.filter((i) => i.season_id === seasonSelected)
 
@@ -31,3 +24,4 @@ export default function Trails ({ items, seasonSelected, trails}){
         </>
     )  
 }   
+

@@ -8,7 +8,7 @@ export default function Season({ handleFall, handleWinter, handleSpring, handleS
 
     return (
         <div className="collection">
-            <nav className ="navBar">
+            <nav className ="seasonButtons">
                 <button type="button" className="btn btn-success" style={{fontSize: 20}} onClick={handleFall}>FALL</button> 
                 <button type="button" className="btn btn-success" style={{fontSize: 20}} onClick={handleWinter}>WINTER</button>    
                 <button type="button" className="btn btn-success" style={{fontSize: 20}} onClick={handleSpring}>SPRING</button> 

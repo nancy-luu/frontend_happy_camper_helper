@@ -129,4 +129,3 @@ export default function App() {
   );
 }
 
-{/* <NavBar className="navBar" items={items} filteredItems={filteredItems} handleSeason={handleSeason}/> */}
