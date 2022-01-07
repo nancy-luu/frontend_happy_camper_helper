@@ -4,10 +4,8 @@ import TrailForm from "./TrailForm"
 
 export default function Trails ({ items, seasonSelected, trails}){
 
-    
     let filteredItems = items.filter((i) => i.season_id === seasonSelected)
 
-    // console.log(itemTrailId)
     let filteredTrail = filteredItems.map((i) => trails.find((trail) => trail.id === i.trail_id))
 
     console.log(trails)

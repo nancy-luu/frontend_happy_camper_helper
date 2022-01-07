@@ -17,10 +17,6 @@ export default function App() {
   const [error, setError] = useState({})
   const [seasonClicked, setSeasonClicked] = useState(false)
 
-
-  // useEffect fetch specific for a season needs to be pulled down here
-  // {props.season_name}
-
   useEffect(() => {
     fetch("http://localhost:9292/items")
       .then((resp) => resp.json())

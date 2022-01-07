@@ -35,7 +35,6 @@ export default function MyList ( {addedItems, handleAddItem, handleBuyItem, upda
                 added: ''
             })
         })
-        // console.log("SUBMIT!")
     } 
 
     useEffect(() => {
