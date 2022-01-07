@@ -11,7 +11,7 @@ export default function NewItem({ postNewItem, formData, handleChange }) {
 
     return (
         <div className="container" style={{ width: "40rem", height: "27rem" }}>
-            <form onSubmit={handleSubmit}>
+            <form className="newItemForm" onSubmit={handleSubmit}>
                 <h3 style={{ fontSize: "25px" }}>Create New Item</h3>
                 <label>
                     <div>Name:</div>

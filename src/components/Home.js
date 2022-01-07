@@ -14,7 +14,7 @@ export default function Home (){
                         </div>
                     </div>
                     <div class="text-bottom">
-                        <div>Set off to the trails or your campsite knowing that you have the right gear with you</div>
+                        <div>Set off to the trails or your campsite, knowing you have the right gear with you</div>
                     </div>
                 </div>
             </>
