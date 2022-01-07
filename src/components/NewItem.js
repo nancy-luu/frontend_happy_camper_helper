@@ -1,24 +1,13 @@
 import React, { useState } from 'react';
 
 
-export default function NewItem({ postNewItem }) {
-    const [formData, setFormData] = useState({
-        name:'',
-        description:'',
-        image_url:'',
-        shopping_url: '',
-        added: ''
-    })
-
-    const handleChange = (e) => {
-        setFormData({...formData, [e.target.name]:e.target.value})
-    }
+export default function NewItem({ postNewItem, formData, handleChange }) {
 
     const handleSubmit = (e) => {
         e.preventDefault()
         postNewItem(formData)
         e.target.reset()
-    } 
+    }
 
     return (
         <div className="container" style={{ width: "40rem", height: "27rem" }}>

@@ -4,7 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import ItemCollection from './ItemCollection';
 import Trails from './Trails'
 
-export default function Season({ handleFall, handleWinter, handleSpring, handleSummer, items, seasonsSelected, trails, handleAddItem, handleBuyItem}) {
+export default function Season({ handleFall, handleWinter, handleSpring, handleSummer, items, seasonsSelected, trails, handleAddItem, seasonClicked}) {
 
     return (
         <div className="collection">
@@ -15,14 +15,13 @@ export default function Season({ handleFall, handleWinter, handleSpring, handleS
                 <button type="button" className="btn btn-success" style={{fontSize: 20}} onClick={handleSummer}>SUMMER</button>   
             </nav>
             <Row className="trailRow">
-                <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>
+                {seasonClicked && <Trails items={items} seasonSelected={seasonsSelected} trails={trails}/>}
             </Row>
             <Row>
                 <ItemCollection 
                     items={items} 
                     seasonSelected={seasonsSelected} 
                     handleAddItem={handleAddItem} 
-                    handleBuyItem={handleBuyItem}
                 />
             </Row>
         </div>

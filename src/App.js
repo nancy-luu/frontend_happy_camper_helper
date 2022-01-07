@@ -17,7 +17,7 @@ export default function App() {
   const [myItems, setMyItems] = useState([]);
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [error, setError] = useState({})
-  const [newItems, setNewItems] = useState([]);
+  const [seasonClicked, setSeasonClicked] = useState(false)
 
 
   // useEffect fetch specific for a season needs to be pulled down here
@@ -27,19 +27,13 @@ export default function App() {
     fetch("http://localhost:9292/items")
       .then((resp) => resp.json())
       .then((items) => setItems(items));
-  }, []);
+  }, [updateSuccess]);
 
   useEffect(() => {
     fetch("http://localhost:9292/trails")
       .then((resp) => resp.json())
       .then((trails) => setTrails(trails));
   }, []);
-
-  useEffect(() => {
-    fetch("http://localhost:9292/my_list")
-      .then((resp) => resp.json())
-      .then((addedItems) => setAddedItems(addedItems));
-  }, [updateSuccess]);
 
 
   function handleHome(){
@@ -52,7 +46,8 @@ export default function App() {
   }
 
   function handleAddItem(item){
-    let data = {id: item.id}
+    let data = {id: item.id, added: !item.added}
+    setUpdateSuccess(false)
 
     fetch("http://localhost:9292/my_list", {
       method: 'PATCH',
@@ -66,39 +61,25 @@ export default function App() {
     .catch((error) => setError(error))
   }
 
-  function handleBuyItem(item){
-    // setItems(items.map((i) => i.id === item.id? {...i, added:true} : i))
-  }
 
   function handleFall({}){
     setSeasonsSelected(1)
+    setSeasonClicked(true)
   }
 
   function handleWinter({}){
     setSeasonsSelected(2)
+    setSeasonClicked(true)
   }
 
   function handleSpring({}){
     setSeasonsSelected(3)
+    setSeasonClicked(true)
   }
 
   function handleSummer({}){
     setSeasonsSelected(4)
-  }
-
-  function postNewItem(item) {
-    fetch("http://localhost:9292/items", {
-      method: 'POST',
-      headers:  {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(item),
-    })
-    .then(res => res.json())
-    .then(newItem => {
-      setNewItems([newItem,...myItems])
-    })
-    // console.log("SUBMIT!")
+    setSeasonClicked(true)
   }
 
 
@@ -121,16 +102,12 @@ export default function App() {
               <Home />
             </Route>
             <Route exact path="/myList">
-              <Row>
                 <MyList 
                   addedItems={addedItems} 
                   handleAddItem={handleAddItem} 
-                  handleBuyItem={handleBuyItem}
+                  updateSuccess={updateSuccess}
+                  setAddedItems={setAddedItems}
                 />
-              </Row>
-              <Row>
-                <NewItem postNewItem={postNewItem}/>
-              </Row>
             </Route>
             <Route exact path="/items">
               <Season 
@@ -142,7 +119,7 @@ export default function App() {
                 seasonsSelected={seasonsSelected} 
                 trails={trails}
                 handleAddItem={handleAddItem} 
-                handleBuyItem={handleBuyItem}
+                seasonClicked={seasonClicked}
               />  
             </Route>
           </Switch>
