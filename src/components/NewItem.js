@@ -7,7 +7,7 @@ export default function NewItem({ postNewItem }) {
         description:'',
         image_url:'',
         shopping_url: '',
-        added: true
+        added: ''
     })
 
     const handleChange = (e) => {

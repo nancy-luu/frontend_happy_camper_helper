@@ -96,7 +96,7 @@ export default function App() {
     })
     .then(res => res.json())
     .then(newItem => {
-      setNewItems([newItem,...items])
+      setNewItems([newItem,...myItems])
     })
     // console.log("SUBMIT!")
   }
