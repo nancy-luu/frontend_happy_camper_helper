@@ -2,11 +2,9 @@ import React, {useEffect, useState} from 'react';
 import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import Header from './components/Header';
 import NavBar from './components/NavBar'
 import Home from './components/Home'
 import MyList from './components/MyList';
-import NewItem from './components/NewItem'
 import Season from './components/Season'
 
 export default function App() {
@@ -81,8 +79,6 @@ export default function App() {
     setSeasonsSelected(4)
     setSeasonClicked(true)
   }
-
-
 
   return (
     <Router>

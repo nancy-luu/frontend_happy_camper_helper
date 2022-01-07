@@ -1,7 +1,8 @@
 body {
   background-image: linear-gradient(
     rgba(0, 0, 0, 0.1),
-    rgba(0, 0, 0, 0.1)), url("https://images.theconversation.com/files/345501/original/file-20200703-29-1b6b93y.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop");
+    rgba(0, 0, 0, 0.1)), 
+    url("https://images.theconversation.com/files/345501/original/file-20200703-29-1b6b93y.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop");
   height: 125vh;
   min-height: 500px;
   background-attachment: fixed;
@@ -12,16 +13,75 @@ body {
   padding: 0;
 }
 
-.header {
-  font-family: 'Mali', cursive;
-  font-size: 85px;
-  color: #2b2d42;
+/* ------ HOME PAGE ---------------------------------------------------- */
+
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+@keyframes showTopText {
+  0% { transform: translate3d(0, 100%, 0); }
+  40%, 60% { transform: translate3d(0, 50%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+@keyframes showBottomText {
+  0% { transform: translate3d(0, -100%, 0); }
+  100% { transform: translate3d(0, 0, 0); }
+}
+.animated-title {
+  font-family: 'Barlow', sans-serif;
+  display: flex;
+  color: #222;
+  height: 50vmin;
+  left: 50%;
+  position: absolute;
+  top: 35%;
+  transform: translate(-50%, -50%);
+  width: 125vmin;
+}
+.animated-title > div {
+  height: 50%;
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+}
+.animated-title > div div {
+  font-size: 3vmin;
+  padding: 2vmin 0;
+  position: absolute;
+}
+.animated-title > div div span {
+  display: flex;
+}
+.animated-title > div.text-top {
+  border-bottom: 0.25vmin solid #000;
+  top: 0;
+}
+.animated-title > div.text-top div {
+  animation: showTopText 1s;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  bottom: 0;
+  transform: translate(0, 100%);
+}
+.animated-title > div.text-top div span:first-child {
+  color: #767676;
+}
+.animated-title > div.text-bottom {
   text-align: center;
+  padding-left: 80px;
+  bottom: 0;
+}
+.animated-title > div.text-bottom div {
+  animation: showBottomText 0.5s;
+  animation-delay: 1.75s;
+  animation-fill-mode: forwards;
+  top: 0;
+  transform: translate(0, -100%);
 }
 
 
+/* ------ ITEM CARD ---------------------------------------------------- */
+
 .itemCard {
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0px 5px 20px black;
   margin: 30px;
   display: flex;
@@ -38,14 +98,73 @@ body {
   margin-bottom: 5px;
 }
 
+body .addbtn {
+  display: inline-block;
+  padding: 6px 14px 6px;
+  margin-bottom: 0;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+  color: #FFFFFF;
+  text-align: center;
+  text-shadow: 0 1px 1px rgba(244, 22, 22, 0.2);
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  background-image: -webkit-linear-gradient(rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.05) 95%);
+  background-image: -moz-linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.05) 95%);
+  background-image: -linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.05) 95%);
+  background-image: -ms-linear-gradient(rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.05) 95%);
+  background-repeat: repeat-x;
+  border: 0;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  -webkit-box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);
+          box-shadow: inset 0 -2px 0 rgba(0,0,0,.2);
+  -webkit-transition: 0.1s;
+     -moz-transition: 0.1s;
+  transition: 0.1s;
+  -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+  -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+  box-sizing: border-box;         /* Opera/IE 8+ */
+}
+
+body .addbtn:hover {
+  background-color: #0098ff;
+  -webkit-box-shadow: inset 0 -4px 0 rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 -4px 0 rgba(0,0,0,.2);
+          box-shadow: inset 0 -4px 0 rgba(0,0,0,.2);
+  margin-top: -2px;
+  padding: 6px 14px 8px;
+}
+
+body .addbtn:active {
+  -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+          box-shadow: none;
+  margin-top: 2px;
+  padding: 6px 14px 4px;
+}
+
+body .btn-black { background-color: #2d322d; }
+body .btn-black:hover { background-color:#444444; }
+
+
+/* ---------------------------------------------------------- */
+
+
 .content {
   text-align: center;
 }
 
-.nav {
+.navBar {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: right;
+  flex-direction: row;
+  padding-top: 80px;
+  padding-right: 80px;
 }
 
 p, h2, h4 {
@@ -57,18 +176,29 @@ p, h2, h4 {
   margin-top: 5px;
 }
 
+.trailRow {
+  justify-content: center;
+  margin-left: 500px;
+}
+
+.trailContainer{
+  justify-content: center;
+}
+
 .trailForm {
-  border-radius: 10px;
-  background-color: white;
-  margin: 40px;
+  font-family: 'Barlow', sans-serif;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.493);
+  margin: 15px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
   float: center;
-  margin-left: 200px;
-  margin-right: 200px;
-  padding: 30px;
-  gap: 10px 0px 20px;
+  width: 500px;
+  padding: 20px;
+  padding-top:10px;
+  gap: 10px 0px 10px;
 }
 
 .addItem {
@@ -86,7 +216,7 @@ form {
   text-align: center;
   margin: 40px;
   padding: 30px;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0px 5px 20px black;
   background-color: #FEFEFE;
   display: flex;
@@ -103,19 +233,243 @@ form {
   flex-wrap: wrap;
 }
 
-.links {
-  font-size: 20px;
-  color: #2b2d42;
-  padding-top: 20px;  
-  margin-right: 10%;
-}
-
 .seasonButtons {
   list-style-type: none;
   padding: 0;
+  padding-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   flex-wrap: nowrap;
-  gap: 20px;
+  gap: 100px;
+}
+
+.webTitle {
+  font-family: 'Barlow', sans-serif;
+  font-size: 80px;
+  color: #2b2d42;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-left: 250px;
+  padding-top: 250px;
+}
+
+.webSubTitle{
+  font-family: 'Barlow', sans-serif;
+  font-size: 30px;
+  color: #2b2d42;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  padding-left: 300px;
+}
+
+/* --- NAV BUTTONS ---------------------------------------------------- */
+
+.custom-btn {
+  font-family: 'Barlow', sans-serif;
+  font-size: 25px;
+  color: #2b2d42;
+  text-decoration: none;
+  text-align: center;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+  margin-right: 30px;
+  margin-left: 30px;
+  width: 25%;
+}
+
+.btn-4 {
+  width: 130px;
+  height: 42px;
+  line-height: 42px;
+  padding: 0;
+  border: none;
+}
+.btn-4 span {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.btn-4:before,
+.btn-4:after {
+  position: absolute;
+  content: "";
+  right: 0;
+  top: 0;
+  background: #000;
+  transition: all 0.3s ease;
+}
+.btn-4:before {
+  height: 50%;
+  width: 1px;
+}
+.btn-4:after {
+  width: 20%;
+  height: 1px;
+}
+.btn-4:hover:before {
+  height: 100%;
+}
+.btn-4:hover:after {
+  width: 100%;
+}
+.btn-4 span:before,
+.btn-4 span:after {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+.btn-4 span:before {
+  width: 1px;
+  height: 50%;
+}
+span:before {
+  width: 1px;
+  height: 50%;
+}
+.btn-4 span:after {
+  width: 20%;
+  height: 1px;
+}
+.btn-4 span:hover:before {
+  height: 100%;
+}
+.btn-4 span:hover:after {
+  width: 100%;
+}
+
+
+
+
+
+/* FALL BUTTON --------------------------------------------- */
+
+* {
+  box-sizing: border-box;
+  margin: 0; padding: 0;
+}
+
+:active, :hover, :focus {
+  outline: 0!important;
+  outline-offset: 0;
+}
+::before,
+::after {
+  position: absolute;
+  content: "";
+}
+
+.btn-holder {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 10px auto 35px;
+}
+.btn {
+  position: relative;
+  display: inline-block;
+  width: auto; height: auto;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  min-width: 150px;
+}
+
+.btn span {         
+  position: relative;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  width: 100%;
+  padding: 10px 20px;
+  transition: 0.3s;
+}
+
+/* 4. hover-filled-slide-right */
+.btn.hover-filled-slide-right::before {
+  top:0; bottom: 0; right: 0;
+  height: 100%; width: 100%;
+}
+.btn.hover-filled-slide-right:hover::before {
+  width: 0%;
+}
+
+/* 9. hover-slide-right */
+.btn.hover-slide-right::before {
+  top: 0; bottom: 0; left: 0; 
+  height: 100%; width: 0%;
+}
+.btn.hover-slide-right:hover::before {
+  width: 100%;
+}
+
+/*--- Fall Btn ---*/
+.btn-fall::before {
+  background-color: rgb(216, 111, 31);
+  transition: 0.3s ease-out;
+}
+.btn-fall span {
+  color: rgb(28, 31, 30);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s;
+}  
+.btn-fall span:hover {
+  color: rgb(255,255,255);
+  transition: 0.2s 0.1s;
+}
+
+/*--- Winter Btn ---*/
+.btn-winter::before {
+  background-color: rgb(98, 182, 255);
+  transition: 0.3s ease-out;
+}
+.btn-winter span {
+  color: rgb(28, 31, 30);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s;
+}  
+.btn-winter span:hover {
+  color: rgb(255,255,255);
+  transition: 0.2s 0.1s;
+}
+
+/*--- Spring Btn ---*/
+.btn-spring::before {
+  background-color: rgb(34, 160, 66);
+  transition: 0.3s ease-out;
+}
+.btn-spring span {
+  color: rgb(28, 31, 30);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s;
+}  
+.btn-spring span:hover {
+  color: rgb(255,255,255);
+  transition: 0.2s 0.1s;
+}
+
+/*--- Summer Btn ---*/
+.btn-summer::before {
+  background-color: rgb(249, 214, 18);
+  transition: 0.3s ease-out;
+}
+.btn-summer span {
+  color: rgb(28, 31, 30);
+  border: 1px solid rgb(28, 31, 30);
+  transition: 0.2s;
+}  
+.btn-summer span:hover {
+  color: rgb(255,255,255);
+  transition: 0.2s 0.1s;
 }
