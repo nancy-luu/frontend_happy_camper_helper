@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
 
 import NavBar from './components/NavBar'
 import Home from './components/Home'
@@ -89,35 +89,37 @@ export default function App() {
           handleSummer={handleSummer}
         />
         <div className="content">
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/myList">
-                <MyList 
-                  addedItems={addedItems} 
-                  handleAddItem={handleAddItem} 
-                  updateSuccess={updateSuccess}
-                  setAddedItems={setAddedItems}
-                />
-            </Route>
-            <Route exact path="/items">
-              <Season 
-                handleFall={handleFall} 
-                handleWinter={handleWinter} 
-                handleSpring={handleSpring} 
-                handleSummer={handleSummer} 
-                items={items} 
-                seasonsSelected={seasonsSelected} 
-                trails={trails}
-                handleAddItem={handleAddItem} 
-                seasonClicked={seasonClicked}
-              />  
-            </Route>
-          </Switch>
+                <Switch >
+                  <Route exact path="/">
+                    <Home />
+                  </Route>
+                  <Route exact path="/myList">
+                      <MyList 
+                        addedItems={addedItems} 
+                        handleAddItem={handleAddItem} 
+                        updateSuccess={updateSuccess}
+                        setAddedItems={setAddedItems}
+                      />
+                  </Route>
+                  <Route exact path="/items">
+                    <Season 
+                      handleFall={handleFall} 
+                      handleWinter={handleWinter} 
+                      handleSpring={handleSpring} 
+                      handleSummer={handleSummer} 
+                      items={items} 
+                      seasonsSelected={seasonsSelected} 
+                      trails={trails}
+                      handleAddItem={handleAddItem} 
+                      seasonClicked={seasonClicked}
+                    />  
+                  </Route>
+                </Switch>
         </div>
       </div>
     </Router>
   );
 }
+
+
 

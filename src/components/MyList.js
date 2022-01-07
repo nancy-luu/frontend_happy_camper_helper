@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row } from 'react-bootstrap';
 
 import ItemCard from './ItemCard'
 import NewItem from './NewItem'

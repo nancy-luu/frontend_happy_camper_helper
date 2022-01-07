@@ -22,11 +22,11 @@ export default function NewItem({ postNewItem, formData, handleChange }) {
                     <input name="description" type="text" style={{width: "30rem"}} value={formData.description} onChange={handleChange} />
                 </label>
                 <label>
-                    <div>Image:</div>
+                    <div>Image URL:</div>
                     <input name="image_url" type="text" style={{width: "30rem"}} value={formData.image_url} onChange={handleChange}/>
                 </label>
                 <label>
-                    <div>Shop URL:</div>
+                    <div>Shopping URL:</div>
                     <input name="shopping_url" type="text" style={{width: "30rem"}} value={formData.shopping_url} onChange={handleChange}/>
                 </label>
                 <button className="btn btn-success" type="submit" value="submit">Submit</button>
